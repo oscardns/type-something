@@ -1,10 +1,9 @@
 import sys
 import time
-import pyautogui as spam
+import pyautogui
 
 # Main variables
-messages1 = [".daily", ".rep 781484526043398165"]
-messages2 = [".daily", ".rep 618154623722848257", ".reminder 12h Do the daily and the rep"]
+messages = ["test1", "test2", "test3"]
 time_given = 0
 
 def input_time():
@@ -13,30 +12,24 @@ def input_time():
         time_given = int(input("How many seconds you want to give to the user?: "))
         time.sleep(time_given)
     except:
-        print("The time given was not an amount of seconds!")
+        print("The time given was not an amount of seconds, or it wasn't a number!")
         quit()
 
-def type_maki(messages_array):
+def type_message(messages_array):
     # Helper variables
     i = 0
-    
     try:
-        # Write every message every 4 seconds, so it seems like a human is typing it or at least copying it from somewhere
+        # Write every message every (1) seconds
         while i < len(messages_array):
-            spam.write(messages_array[i])
-            spam.press('Enter')
-            time.sleep(4)
+            pyautogui.write(messages_array[i])
+            pyautogui.press('Enter') # This is optional. It will type the message, after pushing "Enter" 
+            time.sleep(1) # This is optional. It will type the message every (1) second 
             i += 1
     except:
         print("Something went wrong!")
-    time.sleep(5)
 
 if __name__ == '__main__':
     input_time()
-    repetitions = 3
-    while repetitions > 0:
-        type_maki(messages1)
-        repetitions -= 1
-    type_maki(messages2)
+    type_message(messages)
 
-# Made by Oscar Dionisio Nunez Siri (ODNS)
+# Inspired by another Github repository - Modified by Oscar Dionisio Nunez Siri
